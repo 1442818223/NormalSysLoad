@@ -14,12 +14,12 @@ int main() {
 
 	// 构造驱动程序的完整路径
 	char driverPath[MAX_PATH];
-	snprintf(driverPath, sizeof(driverPath), "%s\\CbsTemp.sys", currentPath); // 假设驱动程序文件名为 12356.sys
+	snprintf(driverPath, sizeof(driverPath), "%s\\CbsTemp66.sys", currentPath); // 假设驱动程序文件名为 12356.sys
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		// 停止服务的命令   CbsTemp这两个都是服务名
-	const char* stopCmd = "sc stop CbsTemp";  // 修改为 MyDriver
+		// 停止服务的命令   CbsTemp66这两个都是服务名
+	const char* stopCmd = "sc stop CbsTemp66";  // 修改为 MyDriver
 	// 删除服务的命令
-	const char* deleteCmd = "sc delete CbsTemp"; // 修改为 MyDriver
+	const char* deleteCmd = "sc delete CbsTemp66"; // 修改为 MyDriver
 
 	// 执行停止服务命令
 	int resultStop = system(stopCmd);
@@ -75,9 +75,9 @@ if %errorlevel% neq 0 (
 	}
 
 
-	// 创建服务命令     CbsTemp这两个都是服务名
+	// 创建服务命令     CbsTemp66这两个都是服务名
 	char createCmd[512];
-	snprintf(createCmd, sizeof(createCmd), "sc create CbsTemp binPath= \"C:\\Windows\\System32\\drivers\\CbsTemp.sys\" type= kernel start= demand", driverPath);
+	snprintf(createCmd, sizeof(createCmd), "sc create CbsTemp66 binPath= \"C:\\Windows\\System32\\drivers\\CbsTemp66.sys\" type= kernel start= demand", driverPath);
 	int resultCreate = system(createCmd);
 	if (resultCreate != 0) {
 		printf("创建服务失败\n");
@@ -89,9 +89,9 @@ if %errorlevel% neq 0 (
 
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//	// 创建服务命令     CbsTemp这两个都是服务名
+	//	// 创建服务命令     CbsTemp66这两个都是服务名
 	//char createCmd[512];
-	//snprintf(createCmd, sizeof(createCmd), "sc create CbsTemp binPath= \"%s\" type= kernel start= demand", driverPath);
+	//snprintf(createCmd, sizeof(createCmd), "sc create CbsTemp66 binPath= \"%s\" type= kernel start= demand", driverPath);
 	//int resultCreate = system(createCmd);
 	//if (resultCreate != 0) {
 	//	printf("创建服务失败\n");
@@ -99,7 +99,7 @@ if %errorlevel% neq 0 (
 	//}
 
 	// 启动服务命令
-	const char* startCmd = "sc start CbsTemp";
+	const char* startCmd = "sc start CbsTemp66";
 	int resultStart = system(startCmd);
 	if (resultStart != 0) {
 		printf("启动服务失败\n");
@@ -115,7 +115,7 @@ if %errorlevel% neq 0 (
 
 	// 打开服务的注册表项
 	result = RegOpenKeyEx(HKEY_LOCAL_MACHINE,
-		TEXT("SYSTEM\\CurrentControlSet\\Services\\CbsTemp"),
+		TEXT("SYSTEM\\CurrentControlSet\\Services\\CbsTemp66"),
 		0,
 		KEY_SET_VALUE,
 		&hKey);

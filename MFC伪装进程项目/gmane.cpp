@@ -106,13 +106,13 @@ BOOL SendIoctl(HANDLE hDevice, DWORD ioctlCode, CommInfo* 数据) {
 	CommInfo info;
 	info.inData = pid;
 	BOOL ison = SendIoctl(hDevice, ioctl_PRETEND, &info);
-	//if (ison)
-	//{ // 将 PID 转换为字符串并添加到消息框内容中
-	//	char message[256];
-	//	snprintf(message, sizeof(message), "隐藏的目标PID: %u 成功", pid);
+	if (ison)
+	{ // 将 PID 转换为字符串并添加到消息框内容中
+		char message[256];
+		snprintf(message, sizeof(message), "隐藏的目标PID: %u 成功", pid);
 
-	//	MessageBoxA(NULL, message, "提示", MB_OK);
-	//}
+		MessageBoxA(NULL, message, "提示", MB_OK);
+	}
 
 	CloseHandle(hDevice); // 确保在结束前关闭设备句柄
 
