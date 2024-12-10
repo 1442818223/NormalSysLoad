@@ -77,6 +77,9 @@ static NTSTATUS CreateDriverService(PWCHAR ServiceName, PWCHAR FileName)
 	FileNameToServiceName(ServiceName, FileName);
 	wprintf(L"FileNameToServiceName转换而来的ServiceName: %s\n", ServiceName);
 
+	//GenerateRandomName(ServiceName, FileName);//生成随机服务名
+
+
 	NTSTATUS Status = RtlCreateRegistryKey(0, ServiceName);
 	if (!NT_SUCCESS(Status))
 		return Status;
