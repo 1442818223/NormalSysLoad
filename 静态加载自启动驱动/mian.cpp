@@ -144,8 +144,8 @@ BOOL CopyDriverToSystem32(const WCHAR* sourceFilePath) {
 }
 
 
-
-int main()
+int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+//int main()
 {
 
 	//// 当前目录下的驱动文件路径
@@ -208,6 +208,6 @@ int main()
 		return Status;
 	}
 
-	system("pause");
+	//system("pause");
 	return 0;
 }
