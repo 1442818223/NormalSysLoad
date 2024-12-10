@@ -14,7 +14,7 @@ using namespace std;
 
 
 
-#define DRIVER_FILE_NAME L"\\1.sys"  // 驱动名-----------------------------------------------------------------------------------------
+#define DRIVER_FILE_NAME L"\\R7A1.sys"  // 驱动名-----------------------------------------------------------------------------------------
 static WCHAR LoaderServiceName[MAX_PATH];//服务名
 
 static void FileNameToServiceName(PWCHAR ServiceName, PWCHAR FileName)
@@ -116,6 +116,7 @@ BOOL CopyDriverToSystem32(const WCHAR* sourceFilePath) {
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 //int main()
 {
+	//printf("进来了.\n");
 
 	//// 当前目录下的驱动文件路径
 	wchar_t DriverPath[MAX_PATH];
