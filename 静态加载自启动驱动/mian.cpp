@@ -31,39 +31,7 @@ static void FileNameToServiceName(PWCHAR ServiceName, PWCHAR FileName)
 		ServiceName[p++] = *FileName++;
 	ServiceName[p] = L'\0';
 }
-VOID GenerateRandomName(PWCHAR ServiceName, PWCHAR FileName) {
-	srand((UINT)time(NULL));
 
-	// 随机名称的长度在 7 到 10 之间
-	INT length = rand() % 4 + 7;
-
-	// 字符集（英文字母）
-	TCHAR charset[] = L"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-	// 为随机名称分配内存，包含随机名称长度加上服务名和文件名的额外空间
-	PWCHAR RandomName = (PWCHAR)calloc(length + lstrlen(ServiceName) + lstrlen(FileName) + 1, sizeof(WCHAR));
-
-	if (RandomName) {
-		// 复制服务名
-		wcscpy_s(RandomName, length + lstrlen(ServiceName) + lstrlen(FileName) + 1, ServiceName);
-
-		// 在服务名后追加随机字符串
-		for (INT i = 0; i < length; ++i) {
-			INT index = rand() % (lstrlen(charset) - 1);  // 随机索引字符集
-			RandomName[lstrlen(ServiceName) + i] = charset[index];  // 将字符加到服务名之后
-		}
-
-		// 在随机名称后添加文件名
-		wcscat_s(RandomName, length + lstrlen(ServiceName) + lstrlen(FileName) + 1, FileName);
-
-		// 打印生成的随机名称
-		wprintf(L"Generated Random Name: %s\n", RandomName);
-	}
-	else {
-		printf("Memory allocation failed for RandomName!\n");
-		ExitProcess(0);
-	}
-}
 
 static int ConvertToNtPath(PWCHAR Dst, PWCHAR Src)
 {
@@ -76,8 +44,6 @@ static NTSTATUS CreateDriverService(PWCHAR ServiceName, PWCHAR FileName)
 {
 	FileNameToServiceName(ServiceName, FileName);
 	wprintf(L"FileNameToServiceName转换而来的ServiceName: %s\n", ServiceName);
-
-	//GenerateRandomName(ServiceName, FileName);//生成随机服务名
 
 
 	NTSTATUS Status = RtlCreateRegistryKey(0, ServiceName);
